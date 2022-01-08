@@ -41,3 +41,68 @@ data_kokomaa <- data |> dplyr::group_by(time) |>
 data_alueittain <- dplyr::left_join(data, data_kokomaa, by = "time")
 
 usethis::use_data(data_alueittain, overwrite = TRUE)
+
+
+# suuralueittain, tyovoimatutkimus
+
+data_avoimet_tyopaikat <- pttdatahaku::ptt_read_data("atp_11n1", only_codes = TRUE) |>
+  tidyr::spread(tiedot, value) |>
+  dplyr::rename(AVPAIKATLOPUSSA = atp_lkm) |>
+  dplyr::filter(suuralue != "SSS")
+data_tyottomat <- pttdatahaku::ptt_read_data("tyti_137i",only_codes = TRUE) |>
+  dplyr::filter(tiedot == "Tyottomat") |>
+  tidyr::spread(tiedot, value) |>
+  dplyr::rename(suuralue = suuralue_2012) |>
+  dplyr::filter(suuralue != "SSS") |>
+  dplyr::mutate(TYOTTOMATLOPUSSA = 1000*Tyottomat) |>
+  dplyr::filter(sukupuoli == "SSS")
+
+
+data_kokomaa_avoimet_tyopaikat <- data_avoimet_tyopaikat |>
+  dplyr::group_by(time) |>
+  dplyr::summarize(kokomaa_AVPAIKATLOPUSSA = sum(AVPAIKATLOPUSSA))
+data_kokomaa_tyottomat <- data_tyottomat |>
+  dplyr::group_by(time) |>
+  dplyr::summarize(kokomaa_TYOTTOMATLOPUSSA = sum(TYOTTOMATLOPUSSA))
+
+data_tyottomat <- dplyr::left_join(data_tyottomat, data_kokomaa_tyottomat, by = "time")
+data_avoimet_tyopaikat <- dplyr::left_join(data_avoimet_tyopaikat, data_kokomaa_avoimet_tyopaikat, by = "time")
+
+data <- dplyr::left_join(data_tyottomat, data_avoimet_tyopaikat, by= c("suuralue", "time")) |>
+  dplyr::filter(!is.na(AVPAIKATLOPUSSA))
+
+data_suuralueittain_tyovoimatutkimus <- data
+
+usethis::use_data(data_suuralueittain_tyovoimatutkimus, overwrite = TRUE)
+
+
+# Suuralueittain, tyonvalitystilasto
+
+data_tyonv_12r5 <- pttdatahaku::ptt_read_data("tyonv_12r5", only_codes = TRUE) |>
+  dplyr::filter(grepl("MK", alue)) |>
+  dplyr::rename(maakunta = alue) |>
+  dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA")) |>
+  tidyr::spread(tiedot, value)
+
+key <- statficlassifications::get_regionkey("maakunta", "suuralue", only_codes = TRUE)
+data_tyonv_12r5 <- dplyr::mutate(data_tyonv_12r5,
+                                 suuralue= statficlassifications::key_recode(maakunta, key, by = "values"))
+
+data_suuralueet <- data_tyonv_12r5 |>
+                   dplyr::group_by(time, suuralue) |>
+                   dplyr::summarize(TYOTTOMATLOPUSSA = sum(TYOTTOMATLOPUSSA),
+                                    AVPAIKATLOPUSSA = sum(AVPAIKATLOPUSSA)) |>
+                   dplyr::filter(suuralue != "SA5") |>
+                   dplyr::ungroup()
+
+data_kokomaa <- data_suuralueet |>
+                dplyr::group_by(time) |>
+                dplyr::summarize(kokomaa_TYOTTOMATLOPUSSA = sum(TYOTTOMATLOPUSSA),
+                                 kokomaa_AVPAIKATLOPUSSA = sum(AVPAIKATLOPUSSA))
+
+data <- dplyr::left_join(data_suuralueet, data_kokomaa, by = "time")
+
+data_suuralueittain_tyonvalitystilasto <- data
+
+usethis::use_data(data_suuralueittain_tyonvalitystilasto, overwrite = TRUE)
+

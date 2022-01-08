@@ -11,14 +11,15 @@ p_alue_herkkyys <- indeksi_alueittain %>% filter(tiedot == "mismatch_trend") %>%
                      breaks = seq(0.00,0.08, by =0.02),
                      minor_breaks = seq(0.00,0.07, by =0.01)) +
   scale_color_discrete(labels = c("Kunta", "Seutukunta", "Maakunta")) +
-  scale_x_date(breaks = as.Date(paste(seq(2006,2020,by=2), "-01-01", sep = "")),
+  scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
                date_labels = "%Y") +
   labs(x = NULL, y = latex2exp::TeX("$M_t$"),
        color= NULL,
        alpha = NULL) +
   coord_cartesian(ylim = c(0,0.08)) +
   geom_hline(yintercept = 0, col = "black", linetype = 2)+
-  theme(panel.grid.minor = element_line(size=0.5)) + guides(alpha = "none")
+  theme(panel.grid.minor = element_line(size=0.5)) +
+  guides(alpha = "none")
 
 ggsave("kuviot/indeksi_alueittain_herkkyys.png", plot = p_alue_herkkyys, width = 8, height = 5)
 
@@ -34,7 +35,7 @@ p_ammatti_herkkyys <- indeksi_ammateittain %>% filter(tiedot == "mismatch_trend"
                      breaks = seq(0,0.25,by = 0.05),
                      minor_breaks = seq(0,0.25, by = 0.01)) +
   scale_color_discrete(labels = paste(1:4, "numerotaso", sep = "-")) +
-  scale_x_date(breaks = as.Date(paste(seq(2006,2020,by=2), "-01-01", sep = "")),
+  scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
                date_labels = "%Y") +
   labs(x = NULL, y = latex2exp::TeX("$M_t$"),
        color= NULL,
@@ -48,4 +49,4 @@ p_ammatti_herkkyys <- indeksi_ammateittain %>% filter(tiedot == "mismatch_trend"
 ggsave("kuviot/indeksi_ammateittain_herkkyys.png", plot = p_ammatti_herkkyys, width = 8, height = 5)
 
 p_herkkyys <- gridExtra::grid.arrange(p_alue_herkkyys, p_ammatti_herkkyys, nrow = 1)
-ggsave("kuviot/herkkyys.png",plot = p_herkkyys,  width = 11.2, height = 6)
+ggsave("kuviot/herkkyys_a.pdf",plot = p_herkkyys,  width = 11.2, height = 6)
