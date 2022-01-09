@@ -19,7 +19,8 @@ for(a in as){
                    dplyr::ungroup() |>
                    dplyr::group_by({{by}}) |>
                    dplyr::mutate(mismatch_sa = statfitools::sa_series(mismatch, time),
-                                 mismatch_trend = statfitools::trend_series(mismatch, time)) |>
+                                 mismatch_trend = statfitools::trend_series(mismatch, time),
+                                 mismatch_loess = statfitools::loess_series(mismatch, time, span = 0.5)) |>
                    tidyr::gather(tiedot, value, -time, -{{by}}) |>
                    dplyr::ungroup()
   mismatch_temp$a <- a

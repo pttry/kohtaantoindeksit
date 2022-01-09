@@ -1,8 +1,8 @@
 
 
 # Hae data
-data <- pttdatahaku::ptt_read_data("tyonv_12r5", only_codes = TRUE) %>%
-  dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA", "TYOVOIMATK")) %>%
+data <- pttdatahaku::ptt_read_data("tyonv_12r5", only_codes = TRUE) |>
+  dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA", "TYOVOIMATK")) |>
   tidyr::spread(tiedot, value)
 
 data_kunnat <- dplyr::filter(data, grepl("KU", alue)) |> dplyr::rename(kunta_code = alue)
@@ -27,9 +27,13 @@ data_kunnat <- data_kunnat |>
 
 
 
-df_largest_kunnat <- data_kunnat %>% filter(time == "2021-11-01") %>%
-  arrange(desc(TYOVOIMATK))
-largest_kunnat_maara <- 150
+df_largest_kunnat <- data_kunnat |>
+                     dplyr::filter(time == "2021-11-01") |>
+                     dplyr::arrange(desc(TYOVOIMATK))
+
+output <- data.frame()
+
+for(largest_kunnat_maara in c(50, 150)) {
 
   largest_kunnat <- df_largest_kunnat$kunta_code[1:largest_kunnat_maara]
 
@@ -55,30 +59,57 @@ largest_kunnat_maara <- 150
     df <- rbind(df, df_temp)
   }
 
-  df <- df%>% tidyr::gather("tiedot", "value", -time) %>%
+  df <- df|> tidyr::gather("tiedot", "value", -time) |>
     dplyr::mutate(time = as.Date(time))
 
-p2 <- df %>% dplyr::filter(tiedot %in% c("indeksi_TYOTTOMATLOPUSSA",
-                                  "indeksi_AVPAIKATLOPUSSA")) %>%
-  dplyr::mutate(tiedot = plyr::revalue(tiedot, c("indeksi_AVPAIKATLOPUSSA" = "Avoimet työpaikat",
-                                          "indeksi_TYOTTOMATLOPUSSA" = "Työttömät"))) %>%
-  ggplot(aes(x = time, y = value, color = tiedot)) +
-  geom_line( alpha = 0.3) +
-  geom_smooth(se = FALSE) +
-  labs(x = NULL,
-       y = paste("Osuus suurimassa ", as.character(largest_kunnat_maara), " kunnassa", sep = ""),
-       color = NULL) +
-  scale_y_continuous(labels = percent_comma) +
-  scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
-               date_labels = "%Y") +
-  scale_color_manual(
-                     values = ggptt_palettes$ptt[1:2])
+  df$largest_kunnat_maara <- largest_kunnat_maara
+
+  output <- rbind(output, df)
+
+}
+
+plot_alueellinen_keskittyminen <- function(data) {
+  data |>
+    dplyr::filter(tiedot %in% c("indeksi_TYOTTOMATLOPUSSA", "indeksi_AVPAIKATLOPUSSA")) |>
+    dplyr::group_by(tiedot) |>
+    dplyr::mutate(value_loess = statfitools::loess_series(value, time)) |>
+    mutate(value_year = ifelse(grepl("01-01", time), value_loess, NA)) |>
+    ggplot(aes(x = time, color = tiedot)) +
+    geom_line(aes(y = value), alpha = 0.3, size = 1) +
+    geom_line(aes(y = value_loess), alpha  =1, size = 1) +
+    geom_point(aes(y = value_year, shape = tiedot)) +
+    labs(x = NULL,
+         y = paste("Osuus suurimassa ", as.character(largest_kunnat_maara), " kunnassa", sep = ""),
+         color = NULL) +
+    scale_y_continuous(labels = percent_comma) +
+    scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
+                 date_labels = "%Y") +
+    scale_color_manual(name = "", labels = c("Avoimet työpaikat", "Työttömät"),
+      values = ggptt_palettes$ptt[1:2]) +
+    scale_shape_manual(name = "", values = 15:16, labels = c("Avoimet työpaikat", "Työttömät")) +
+    theme(legend.text = element_text(size = 15),
+          axis.title = element_text(size = 15))
+}
+
+p1 <- output |> filter(largest_kunnat_maara == 50) |> plot_alueellinen_keskittyminen()
+p2 <- output |> filter(largest_kunnat_maara == 150) |> plot_alueellinen_keskittyminen()
 
 p <- gridExtra::grid.arrange(p1, p2, nrow = 1)
 ggsave("kuviot/alueellinen_keskittyminen.pdf",plot = p,  width = 11.2, height = 6)
 
 
-df %>% filter(tiedot %in% c("kokomaa_AVPAIKATLOPUSSA", "largest_AVPAIKATLOPUSSA")) %>%
+
+
+
+
+
+
+
+
+
+
+
+df |> filter(tiedot %in% c("kokomaa_AVPAIKATLOPUSSA", "largest_AVPAIKATLOPUSSA")) |>
        ggplot(aes(x = time, y = value, col = tiedot)) +
        geom_line() +
        geom_smooth(se = FALSE) +
@@ -91,7 +122,7 @@ df %>% filter(tiedot %in% c("kokomaa_AVPAIKATLOPUSSA", "largest_AVPAIKATLOPUSSA"
                           values = ggptt_palettes$ptt[1:2])
 
 
-df %>% filter(tiedot %in% c("smallest_avoimet_tyopaikat", "largest_avoimet_tyopaikat")) %>%
+df |> filter(tiedot %in% c("smallest_avoimet_tyopaikat", "largest_avoimet_tyopaikat")) |>
   ggplot(aes(x = time, y = value, col = tiedot)) +
   geom_line() +
   geom_smooth(se = FALSE) +

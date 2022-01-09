@@ -1,22 +1,28 @@
 data("indeksi_ammateittain")
 library(tidyverse)
 
-p <- indeksi_ammateittain %>% filter(tiedot %in% c("mismatch", "mismatch_trend"), a == 0.5) %>%
-  ggplot(aes(x = time, y = value, col = as.factor(ammattiryhma_codetaso), alpha = tiedot)) +
-  geom_line(size = 1) +
-  scale_alpha_discrete(range = c(0.3,1)) +
+p <- indeksi_ammateittain |>
+  spread(tiedot, value) |>
+  filter(a == 0.5) |>
+  mutate(ammattiryhma_codetaso = as.factor(ammattiryhma_codetaso)) |>
+  mutate(value_year = ifelse(grepl("01-01", time), mismatch_trend, NA)) |>
+  ggplot(aes(x = time, col = ammattiryhma_codetaso)) +
+  geom_line(aes(y = mismatch), alpha = 0.3, size = 1) +
+  geom_line(aes(y = mismatch_trend), alpha = 1, size = 1) +
+  geom_point(aes(y = value_year, shape = ammattiryhma_codetaso, col = ammattiryhma_codetaso)) +
   scale_y_continuous(labels = percent_comma,
                      breaks = seq(0,0.25,by = 0.05),
                      minor_breaks = seq(0,0.25, by = 0.01)) +
-  scale_color_discrete(labels = paste(1:4, "numerotaso", sep = "-")) +
+  scale_color_discrete(name = "Työmarkkinamääritelmä",labels = paste(1:4, "numerotaso", sep = "-")) +
+  scale_shape_manual(name = "Työmarkkinamääritelmä", values = 15:18, labels = paste(1:4, "numerotaso", sep = "-")) +
   scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
                date_labels = "%Y") +
-  labs(x = NULL, y = latex2exp::TeX("$M_t$"),
-       color= "Työmarkkinamääritelmä") +
-  geom_hline(yintercept = 0, color = "black", linetype = 2) +
+  labs(x = NULL, y = latex2exp::TeX("$M_t$")) +
   coord_cartesian(ylim = c(0, 0.25)) +
-  theme(panel.grid.minor = element_line(size=0.5)) +
-  guides(alpha = "none")
+  geom_hline(yintercept = 0, col = "black", linetype = 2)+
+  theme(panel.grid.minor = element_line(size = 0.5)) +
+  guides(colour = guide_legend(title.position = "top"),
+         shape = guide_legend(title.position = "top"))
 
 
 ggsave("kuviot/indeksi_ammateittain.pdf", plot = p, width = 8, height = 5)
