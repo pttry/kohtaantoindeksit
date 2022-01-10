@@ -68,8 +68,8 @@ for(largest_kunnat_maara in c(50, 150)) {
 
 }
 
-plot_alueellinen_keskittyminen <- function(data) {
-  data |>
+plot_alueellinen_keskittyminen <- function(data, .largest_kunnat_maara) {
+  data |> filter(largest_kunnat_maara == .largest_kunnat_maara) |>
     dplyr::filter(tiedot %in% c("indeksi_TYOTTOMATLOPUSSA", "indeksi_AVPAIKATLOPUSSA")) |>
     dplyr::group_by(tiedot) |>
     dplyr::mutate(value_loess = statfitools::loess_series(value, time)) |>
@@ -79,7 +79,7 @@ plot_alueellinen_keskittyminen <- function(data) {
     geom_line(aes(y = value_loess), alpha  =1, size = 1) +
     geom_point(aes(y = value_year, shape = tiedot)) +
     labs(x = NULL,
-         y = paste("Osuus suurimassa ", as.character(largest_kunnat_maara), " kunnassa", sep = ""),
+         y = paste("Osuus suurimassa ", as.character(.largest_kunnat_maara), " kunnassa", sep = ""),
          color = NULL) +
     scale_y_continuous(labels = percent_comma) +
     scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
@@ -91,8 +91,8 @@ plot_alueellinen_keskittyminen <- function(data) {
           axis.title = element_text(size = 15))
 }
 
-p1 <- output |> filter(largest_kunnat_maara == 50) |> plot_alueellinen_keskittyminen()
-p2 <- output |> filter(largest_kunnat_maara == 150) |> plot_alueellinen_keskittyminen()
+p1 <- output |> plot_alueellinen_keskittyminen(50)
+p2 <- output |> plot_alueellinen_keskittyminen(150)
 
 p <- gridExtra::grid.arrange(p1, p2, nrow = 1)
 ggsave("kuviot/alueellinen_keskittyminen.pdf",plot = p,  width = 11.2, height = 6)
