@@ -1,6 +1,6 @@
 data("data_alueittain")
 as <- seq(0.25, 0.75, by = 0.05)
-indeksi_alueittain <- compute_mismatch_index(data_alueittain, as, by = region_level)
+indeksi_alueittain <- rbind(compute_mismatch_index(data_alueittain, as, by = region_level))
 usethis::use_data(indeksi_alueittain, overwrite = TRUE)
 
 data("data_ammateittain")
