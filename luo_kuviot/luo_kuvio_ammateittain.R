@@ -26,7 +26,10 @@ p <- indeksi_ammateittain |>
 
 
 ggsave("kuviot/indeksi_ammateittain.pdf", plot = p, width = 8, height = 5)
-
+save_plot_AW_raportti("indeksi_ammateittain", width = 6, height = 4)
+indeksi_ammateittain |>
+  filter(a == 0.5, tiedot %in% c("mismatch", "mismatch_trend")) |>
+  save_data_AW_raportti("indeksi_ammateittain")
 
 p_abs <- indeksi_ammateittain |>
   spread(tiedot, value) |>

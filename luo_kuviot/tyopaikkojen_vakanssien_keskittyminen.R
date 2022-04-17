@@ -82,13 +82,14 @@ plot_alueellinen_keskittyminen <- function(data, .largest_kunnat_maara) {
          y = paste("Osuus suurimassa ", as.character(.largest_kunnat_maara), " kunnassa", sep = ""),
          color = NULL) +
     scale_y_continuous(labels = percent_comma) +
-    scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
+    scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=4), "-01-01", sep = "")),
                  date_labels = "%Y") +
     scale_color_manual(name = "", labels = c("Avoimet työpaikat", "Työttömät"),
       values = ggptt_palettes$ptt[1:2]) +
     scale_shape_manual(name = "", values = 15:16, labels = c("Avoimet työpaikat", "Työttömät")) +
     theme(legend.text = element_text(size = 15),
-          axis.title = element_text(size = 15))
+          axis.title = element_text(size = 15),
+          axis.text = element_text(size = 15))
 }
 
 p1 <- output |> plot_alueellinen_keskittyminen(50)
@@ -96,7 +97,8 @@ p2 <- output |> plot_alueellinen_keskittyminen(150)
 
 p <- gridExtra::grid.arrange(p1, p2, nrow = 1)
 ggsave("kuviot/alueellinen_keskittyminen.pdf",plot = p,  width = 11.2, height = 6)
-
+save_plot_AW_raportti("alueellinen_keskittyminen", width = 10, height = 6, plot = p)
+save_data_AW_raportti(output, "av_tyopaikat_tyottomat_keskittyminen")
 
 
 

@@ -25,7 +25,10 @@ p <-indeksi_alueittain |>
          shape = guide_legend(title.position = "top"))
 
 ggsave("kuviot/indeksi_alueittain.pdf", plot = p, width = 8, height = 5)
-
+save_plot_AW_raportti("indeksi_alueittain", width = 6, height = 4)
+indeksi_alueittain |>
+   filter(a == 0.5, tiedot %in% c("mismatch", "mismatch_trend")) |>
+   save_data_AW_raportti("indeksi_alueittain")
 
 p_abs <-indeksi_alueittain |>
   spread(tiedot, value) |>
