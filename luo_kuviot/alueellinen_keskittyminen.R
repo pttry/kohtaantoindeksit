@@ -27,8 +27,8 @@ plot_alueellinen_keskittyminen <- function(data, .largest_kunnat_maara) {
 
 data(data_alueellinen_keskittyminen)
 
-p1 <- output |> plot_alueellinen_keskittyminen(50)
-p2 <- output |> plot_alueellinen_keskittyminen(150)
+p1 <- data_alueellinen_keskittyminen |> plot_alueellinen_keskittyminen(50)
+p2 <- data_alueellinen_keskittyminen |> plot_alueellinen_keskittyminen(150)
 
 p <- ggpubr::ggarrange(p1, p2, nrow = 1, common.legend = TRUE, legend = "bottom")
 ggsave("kuviot/alueellinen_keskittyminen.pdf",plot = p,  width = 11.2, height = 6)
