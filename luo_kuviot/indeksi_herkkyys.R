@@ -25,13 +25,16 @@ p_alue_herkkyys <- indeksi_alueittain |> filter(tiedot == "mismatch_trend") |>
        alpha = NULL) +
   coord_cartesian(ylim = c(0,0.08)) +
   geom_hline(yintercept = 0, col = "black", linetype = 2)+
-  theme(panel.grid.minor = element_line(size=0.5)) +
+  theme_bw() +
   guides(alpha = "none") +
   guides(colour = guide_legend(title.position = "top", nrow = 2),
          shape = guide_legend(title.position = "top", nrow = 2)) +
   theme(legend.text = element_text(size = 15),
         legend.title = element_text(size = 15),
-        axis.title = element_text(size = 15))
+        axis.title = element_text(size = 15),
+        panel.grid.minor = element_line(size=0.5),
+        legend.position = "bottom",
+        legend.justification = "left")
 
 ggsave("kuviot/indeksi_alueittain_herkkyys.png", plot = p_alue_herkkyys, width = 8, height = 5)
 

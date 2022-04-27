@@ -1,5 +1,4 @@
 data("indeksi_alueittain")
-library(tidyverse)
 
 p <-indeksi_alueittain |>
   spread(tiedot, value) |>
@@ -20,7 +19,10 @@ p <-indeksi_alueittain |>
   labs(x = NULL, y = latex2exp::TeX("$M_t$")) +
   coord_cartesian(ylim = c(0,0.08)) +
   geom_hline(yintercept = 0, col = "black", linetype = 2)+
-  theme(panel.grid.minor = element_line(size = 0.5)) +
+  theme_bw() +
+  theme(panel.grid.minor = element_line(size = 0.5),
+        legend.position = "bottom",
+        legend.justification = "left") +
   guides(colour = guide_legend(title.position = "top"),
          shape = guide_legend(title.position = "top"))
 

@@ -17,8 +17,10 @@ plot_alueellinen_keskittyminen <- function(data, .largest_kunnat_maara) {
     scale_color_manual(name = "", labels = c("Avoimet työpaikat", "Työttömät"),
       values = ggptt_palettes$ptt[1:2]) +
     scale_shape_manual(name = "", values = 15:16, labels = c("Avoimet työpaikat", "Työttömät")) +
+    theme_bw() +
     theme(legend.text = element_text(size = 15),
           legend.position = "bottom",
+          legend.justification = "left",
           axis.title = element_text(size = 15),
           axis.text = element_text(size = 15))
 }
