@@ -1,5 +1,4 @@
 data("indeksi_alueittain")
-library(tidyverse)
 
 indeksi_alueittain <- mutate(indeksi_alueittain, benchmark = ifelse(a == 0.5, "benchmark", "not_benchmark"))
 
@@ -36,12 +35,9 @@ p_alue_herkkyys <- indeksi_alueittain |> filter(tiedot == "mismatch_trend") |>
         legend.position = "bottom",
         legend.justification = "left")
 
-ggsave("kuviot/indeksi_alueittain_herkkyys.png", plot = p_alue_herkkyys, width = 8, height = 5)
-
 data("indeksi_ammateittain")
 
 indeksi_ammateittain <- mutate(indeksi_ammateittain, benchmark = ifelse(a == 0.5, "benchmark", "not_benchmark"))
-
 
 point_data <- indeksi_ammateittain |>
   filter(a == 0.5, tiedot == "mismatch_trend") |>
@@ -73,14 +69,6 @@ p_ammatti_herkkyys <- indeksi_ammateittain |> filter(tiedot == "mismatch_trend")
   theme(legend.text = element_text(size = 15),
         legend.title = element_text(size = 15),
         axis.title = element_text(size = 15))
-
-
-
-
-
-
-
-ggsave("kuviot/indeksi_ammateittain_herkkyys.png", plot = p_ammatti_herkkyys, width = 8, height = 5)
 
 p_herkkyys <- gridExtra::grid.arrange(p_alue_herkkyys, p_ammatti_herkkyys, nrow = 1)
 ggsave("kuviot/herkkyys_a.pdf",plot = p_herkkyys,  width = 11.2, height = 6)

@@ -36,7 +36,4 @@ plot_beveridge_curve(data) +
   scale_x_continuous(labels = ggptt::percent_comma) +
   theme_bw()
 
-
 ggsave("kuviot/beveridge_curve.pdf",plot = last_plot(),  width = 8, height = 5)
-save_plot_AW_raportti("beveridge_kayra", width = 8, height = 5)
-

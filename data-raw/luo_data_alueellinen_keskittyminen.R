@@ -1,6 +1,7 @@
 # Hae data
 
-data <- pttdatahaku::ptt_read_data("tyonv_12r5", only_codes = TRUE) |>
+data("tyonv_12r5")
+data <- tyonv_12r5 |>
   dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA", "TYOVOIMATK")) |>
   tidyr::spread(tiedot, value)
 

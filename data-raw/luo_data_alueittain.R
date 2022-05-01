@@ -1,4 +1,6 @@
-data <- ptt_read_data("tyonv_12r5") |>
+
+data(tyonv_12r5)
+data <- tyonv_12r5 |>
   dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA")) |>
   tidyr::spread(tiedot, value)
 
@@ -45,11 +47,14 @@ usethis::use_data(data_alueittain, overwrite = TRUE)
 
 # suuralueittain, tyovoimatutkimus
 
-data_avoimet_tyopaikat <- pttdatahaku::ptt_read_data("atp_11n1", only_codes = TRUE) |>
+data("atp_11n1")
+data_avoimet_tyopaikat <- atp_11n1 |>
   tidyr::spread(tiedot, value) |>
   dplyr::rename(AVPAIKATLOPUSSA = atp_lkm) |>
   dplyr::filter(suuralue != "SSS")
-data_tyottomat <- pttdatahaku::ptt_read_data("tyti_137i",only_codes = TRUE) |>
+
+data("tyti_137i")
+data_tyottomat <- tyti_137i |>
   dplyr::filter(tiedot == "Tyottomat") |>
   tidyr::spread(tiedot, value) |>
   dplyr::rename(suuralue = suuralue_2012) |>
@@ -78,7 +83,8 @@ usethis::use_data(data_suuralueittain_tyovoimatutkimus, overwrite = TRUE)
 
 # Suuralueittain, tyonvalitystilasto
 
-data_tyonv_12r5 <- pttdatahaku::ptt_read_data("tyonv_12r5", only_codes = TRUE) |>
+data("tyonv_12r5")
+data_tyonv_12r5 <- tyonv_12r5 |>
   dplyr::filter(grepl("MK", alue)) |>
   dplyr::rename(maakunta = alue) |>
   dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA")) |>

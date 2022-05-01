@@ -1,15 +1,14 @@
 Package: kohtaantoindeksit
-Title: What the Package Does (One Line, Title Case)
+Title: Alueellisesta ja ammatillisesta kohtaannosta
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Juho",
+           family = "Alasalmi",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "juho.alasalmi@ptt.fi",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: Arvioin työmarkkinoiden alueellisen ja ammatillisen kohtaannon kehitystä Suomessa vuodesta 2006 alkaen. Muodostan kohtaanto-ongelman suuruutta mittaavan indeksin \cite{csahin2014mismatch}, joka kuvaa kuinka epätasapainoisesti työttömät työnhakijat ja avoimet työpaikat ovat sijoittuneet eri alueille ja eri ammatteihin verrattuna tilanteeseen, jossa alueellinen tai ammatillinen liikkuvuus eivät olisi rajoitteita. Arvioin sekä alueellisen että ammatillisen kohtaanto-ongelman trendinomaisesti pienentyneen 2000-luvun aikana. Kokonaisuudessaan työmarkkinoiden kohtaanto on Beveridge-käyrällä mitattuna kuitenkin heikentynyt. Koska epätasapaino työttömien työnhakijoiden ja avoimien työpaikkojen alueellisessa ja ammatillisessa jakaumassa on pienentynyt kohtaannon heikentyminen tuskin johtuu alueellisen tai ammatillisen liikkuvuuden kehityksestä tai rajoitteista.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -19,7 +18,6 @@ Imports:
     ggplot2,
     ggptt,
     latex2exp,
-    pttdatahaku,
     statficlassifications,
     statfitools,
     tidyr

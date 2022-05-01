@@ -2,7 +2,6 @@
 
 data("indeksi_suuralueittain")
 
-
 p <- indeksi_suuralueittain |>
   spread(tiedot, value) |>
   filter(a == 0.5) |>
@@ -13,7 +12,7 @@ p <- indeksi_suuralueittain |>
   geom_point(aes(y = value_year, shape = source, col = source)) +
   scale_y_continuous(labels = ggptt::percent_comma,
                      breaks = seq(0.00,0.03, by =0.01)) +
-  scale_color_manual(name = "Datalähde", values = ggptt_palettes$ptt[1:2], labels = c("Työnvälitystilasto", "Työvoimatutkimus")) +
+  scale_color_manual(name = "Datalähde", values = ggptt::ggptt_palettes$ptt[1:2], labels = c("Työnvälitystilasto", "Työvoimatutkimus")) +
   scale_shape_manual(name = "Datalähde", values = 15:16, labels = c("Työnvälitystilasto", "Työvoimatutkimus")) +
   scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
                date_labels = "%Y") +
@@ -34,7 +33,7 @@ ggsave(filename = "kuviot/indeksi_suuralueittain.pdf", width = 8, height = 5)
 
 # Herkkyys
 
-mismatch_tyovoimatutkimus <- dplyr::filter(indeksi_suuralueittain, source = "tyovoimatutkimus")
+mismatch_tyovoimatutkimus <- dplyr::filter(indeksi_suuralueittain, source == "tyovoimatutkimus")
 mismatch_tyovoimatutkimus <- dplyr::mutate(mismatch_tyovoimatutkimus, benchmark = ifelse(a == 0.5, "benchmark", "not_benchmark"))
 
 p_alue_herkkyys <- mismatch_tyovoimatutkimus |> dplyr::filter(tiedot == "mismatch") |>
@@ -43,7 +42,7 @@ p_alue_herkkyys <- mismatch_tyovoimatutkimus |> dplyr::filter(tiedot == "mismatc
   scale_alpha_discrete(range = c(1,0.3)) +
   theme(legend.position = "bottom",
         legend.justification = "left") +
-  scale_y_continuous(labels = percent_comma,
+  scale_y_continuous(labels = ggptt::percent_comma,
                      breaks = seq(0.00,0.03, by =0.01)) +
   scale_color_discrete(labels = c("Kunta", "Seutukunta", "Maakunta")) +
   scale_x_date(breaks = as.Date(paste(seq(2014,2020,by=2), "-01-01", sep = "")),

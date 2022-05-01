@@ -1,4 +1,6 @@
-data <- pttdatahaku::ptt_read_data("tyonv_12ti", only_codes = TRUE) |>
+
+data("tyonv_12ti")
+data <- tyonv_12ti|>
   dplyr::filter(grepl("MK", alue)) |>
   dplyr::filter(ammattiryhma != "SSS",
          !grepl(pattern = "X", ammattiryhma)) |>

@@ -32,5 +32,3 @@ p2 <- data_alueellinen_keskittyminen |> plot_alueellinen_keskittyminen(150)
 
 p <- ggpubr::ggarrange(p1, p2, nrow = 1, common.legend = TRUE, legend = "bottom")
 ggsave("kuviot/alueellinen_keskittyminen.pdf",plot = p,  width = 11.2, height = 6)
-save_plot_AW_raportti("alueellinen_keskittyminen", width = 10, height = 6, plot = p)
-save_data_AW_raportti(output, "av_tyopaikat_tyottomat_keskittyminen")
