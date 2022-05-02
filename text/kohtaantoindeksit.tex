@@ -118,6 +118,7 @@ Huomaa, että indeksin arvon muutokset ajassa johtuvat ainoastaan uusien avoimie
 
 \section{Kohtaanto-ongelman suuruus Suomessa} \label{section:kohtaanto-ongelman suuruus suomessa}
 
+
 Ensimmäinen käytännön kysymys indeksiä laskiessa aineistosta on työmarkkinoiden määrittely. Indeksi määrittelee kohtaanto-ongelman siten, että työntekijät ja avoimet työpaikat eivät liiku työmarkkinoiden välillä ollenkaan, mutta liikkuvat työmarkkinoiden sisällä ilman alueellisen tai ammatillisen liikkuvuuden rajoitteita. Tällaista työmarkkinajakoa ei luonnollisesti ole todellisuudessa olemassa, ja todellisuudessa työmarkkinoiden rajojen ylittämisessä on enemmänkin kyse liikkuvuuden vaikeudesta eikä niinkään sen mahdollisuudesta. Työmarkkinoita voitaisiin myös määritellä aineistolähtöisesti todellisen liikkuvuuden tai työnetsintäkäyttäytymisen perusteella kuten \citeA{marinescu2018mismatch} tekevät, mutta mielenkiintoista on myös määritellä eri kokoisia ja erilaisia työmarkkinoita ja nähdä, kuinka suureksi indeksi kullakin määritelmällä arvioi kohtaanto-ongelman. Kullekin työmarkkinamääritelmälle indeksi voi kuitenkin yliarvioida kohtaanto-ongelman suuruutta, koska se perustuu oletukseen, ettei työmarkkinoiden välillä ole liikkuvuutta, mutta toisaalta voi aliarvioida kohtaanto-ongelman suuruutta olettaessaan, ettei kohtaanto rajoita alueellista tai ammatillista liikkuvuutta työmarkkinan sisällä. 
 
 Työ- ja elinkeinoministeriön Työnvälitystilasto tarjoaa Tilastokeskuksen välityksellä tietoa avoimien työpaikkojen ja työttömien työnhakijoiden sijainneista ja ammateista kuukausittain vuodesta 2006 eteenpäin \cite{svt2011}. Sekä avoimille työpaikoille että työttömille työnhakijoille on määritelty alue kunnan tarkkuudella sekä ammatti Kansallinen Ammattiluokitus 2010 -luokituksen 4-numerotason tarkkuudella. Laskelmat käyttävät näitä tietoja. Laskelmissa käytettävät koko maan tiedot ovat aina laskettu summaamalla ne alue- tai ammattikoodikohtaisista tiedoista, sillä indeksin laskennassa on tärkeää, että alue- tai ammattikohtaiset tiedot summautuvat koko maan tietoihin. Lisäksi avoimen aineiston suojatuille tiedoille on imputoitu arvoja. Tulokset eivät ole herkkiä näille imputoinneille.
@@ -131,15 +132,17 @@ Työ- ja elinkeinoministeriön Työnvälitystilasto tarjoaa Tilastokeskuksen vä
    \label{fig:kdieksl}
 \end{figure}
 
+
 Tarkastelemme ensin alueellisen kohtaanto-ongelman laajuutta määrittelemällä työmarkkinoiden muodostuvan joko kunnista, seutukunnista tai maakunnista. Odotettavasti mitä laajemmaksi määrittelemme työmarkkinat, sitä pienemmäksi arvioimme alueellisen kohtaanto-ongelman, sillä työmarkkinan sisällä alueellista kohtaanto-ongelmaa ei oleteta olevan. Ääritapauksessa mikäli määrittelisimme koko Suomeen vain yhden työmarkkinan, niin arvioisimme alueellisen kohtaanto-ongelman suuruuden nollaksi.
 
-Kuvio \ref{fig:kdieksl} esittää alueellisen kohtaannon luoman vajeen työllistymisien määrässä. Mikäli ajattelemme, että kunnat muodostavat omat työmarkkinansa, noin 3 prosentin verran työllistymisistä jää tapahtumatta kuukausittain vuonna 2020 verrattuna tilanteeseen, jossa kuntien väliselle liikkumiselle ei olisi mitään rajoitteita. Vastaava luku seutukunnille on noin 2 prosenttia ja maakunnille noin 1 prosenttia. 
+Kuvio \ref{fig:kdieksl} esittää alueellisen kohtaanto-ongelman luoman vajeen työllistymisien määrässä. Mikäli ajattelemme, että kunnat muodostavat omat työmarkkinansa, noin 3 prosentin verran työllistymisistä jää tapahtumatta kuukausittain vuonna 2020 verrattuna tilanteeseen, jossa kuntien väliselle liikkumiselle ei olisi mitään rajoitteita. Vastaava luku seutukunnille on noin 2 prosenttia ja maakunnille noin 1 prosenttia. 
 
 Kunnittain arvioitu indeksi todennäköisesti yliarvioi kohtaanto-ongelman suuruutta, sillä työttömät työllistyvät myös asuinkuntansa ulkopuolelle \cite{alasalmi2020tyon} ja alueellisen liikkuvuuden rajoite kunnan sisällä on usein pieni. Toisaalta vaikka alueellista liikkuvuutta todellisuudessa luonnollisesti tapahtuu myös maakuntarajojen yli, tämä ei tarkoita, että maakunnittain laskettu indeksi yliarvioisi alueellisen kohtaanto-ongelman suuruutta. Maakunnittain laskettu indeksi nimittäin myös olettaa, ettei maantiede rajoita kohtaantoa maakuntien sisällä. \citeA{kurvinen2019pitkaaikaistyottomissa} esimerkiksi arvioivat kyselytutkimuksen perusteella, että pitkäaikaistyöttömien joukossa noin kahdella kolmasosalla työnhakualue on korkeintaan asuinmaakunta ja vajaa viidennes haki työtä ainoastaan asuinkunnastaan.  
 
 Huomiota herättävää on alueellisen kohtaanto-ongelman trendinomainen lasku. Vuonna 2020 työttömien työnhakijoiden jakautuminen alueiden välillä on alueellisen kohtaannon kannalta selkeästi parempi kuin vuonna 2006, ja tänä ajanjaksona alueellisen kohtaannon vuoksi täyttymättä jäävien työpaikkojen osuus on noin puolittunut.
 
 \subsection{Ammatillinen kohtaanto} \label{section:ammatillinen_kohtaanto}
+
 
 \begin{figure}
 \centering
@@ -153,6 +156,7 @@ Tarkastellaan seuraavaksi ammatillista kohtaanto-ongelmaa määrittelemällä ty
 Kuvio \ref{fig:kd982} esittää ammatillista kohtaanto-ongelmaa arvioivan indeksin neljälle eri ammattiluokituksen numerotasolle. Jos ajatellaan, että työvoima ei liiku ammattiluokituksen pääluokkien välillä eli esimerkiksi, että sotilaista ei tule erityisasiantuntijoita, palvelu- ja myyntityönteki-jöistä ei tule toimisto- ja asiakaspalvelutyöntekijöitä tai prosessi- ja kuljetustyön-tekijöistä ei tule johtajia, niin ammatillisten kohtaanto-ongelmien vuoksi työllisty-misien määrä kuukauden aikana väheni vuonna 2019 noin 2–3 prosenttia. Kak-sinumeroisella ammattiluokituksella tämä luku on noin 7 prosenttia, kolmenume-roisella noin 10 prosenttia. Nelinumeroisella ammattiluokituksella, eli mikäli ajat-telemme esimerkiksi että ekonomisteista ei tule historioitsijoita, rahoitus- ja sijoi-tusneuvojista ei tule rahoitusanalyytikoita, poliiseista ei tule palomiehiä tai kahvi-latyöntekijöistä ei tule huoltamotyöntekijöitä indeksin arvo on vuonna 2019 noin 14 prosenttia.
 
 Kuten alueellisen kohtaannon osalta, ammatillisen kohtaannon luoma vaje työllistymisessä näyttää laskeneen finanssikriisin jälkeen, mutta alueellisesta kohtaannosta poiketen vuonna 2020 työttömien työnhakijoiden ammatit näyttävät vastaavan avoimien työpaikkojen ammatteja yhtä hyvin kuin vuonna 2006. Verrattaessa alueellista ja ammatillista kohtaantoa huomattavaa on myös ammatillisen kohtaanto-ongelmien suurempi herkkyys suhdanteille. Sekä vuonna 2008 alkanut finanssikriisi, että vuonna 2020 alkanut koronaepidemia näkyvät selvemmin ammatillista kohtaanto-ongelmaa arvioivassa indeksissä kuin alueellista kohtaanto-ongelmaa arvioivassa indeksissä. \citeA{pizzinelli2021has} ovat arvioineet ammatillisen kohtaannon kehitystä Yhdysvalloissa ja Iso-Britanniassa käyttäen {\c{S}}ahinin ym. (2014) indeksiä. Myös he arvioivat finanssikriisillä olleen hyvin voimakas kohtaantoa heikentävä vaikutus, mutta COVID-19 pandemian vaikutuksen olleen pieni ja väliaikainen. 
+
 
 \subsection{Alueellinen ja ammatillinen kohtaanto} \label{section:alueellinen ja ammatillinen kohtaanto}
 
@@ -183,7 +187,7 @@ Suomessa ja maailmalla avoimien työpaikkojen joustoksi ($a$) on arvioitu arvoja
 
 \begin{figure}
 \centering
-\includegraphics[scale = 0.7]{../kuviot/indeksi_suuralueittain.pdf}
+\includegraphics[scale = 0.8]{../kuviot/indeksi_suuralueittain.pdf}
     \newcaption{Kohtaanto-ongelman suuruutta mittaava indeksi Työnvälitystilaston ja Työvoimatutkimuksen tiedoilla. Työmarkkina-alueeksi on määritelty suuralue.  Työnvälitystilasto \protect \firstdatamonth \phantom{}  - \protect\lastdatamonth. Työvoimatutkimus \protect \firstdataquarter \phantom{} - \protect\lastdataquarter. Datalähde, Työnvälitystilasto, Työvoimatutkimus, Tilastokeskus, taulukot 12ti, 11n1, 11c9  \protect \cite{svt2011}.}
    \label{fig:ld0923g}
 \end{figure}

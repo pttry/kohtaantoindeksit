@@ -22,8 +22,11 @@ p <-indeksi_alueittain |>
   theme_bw() +
   theme(panel.grid.minor = element_line(size = 0.5),
         legend.position = "bottom",
-        legend.justification = "left") +
+        legend.justification = "left",
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        axis.title = element_text(size = 15)) +
   guides(colour = guide_legend(title.position = "top"),
          shape = guide_legend(title.position = "top"))
 
-ggsave("kuviot/indeksi_alueittain.pdf", plot = p, width = 8, height = 5)
+ggsave("kuviot/indeksi_alueittain.pdf", plot = p, width = 8, height = 4)

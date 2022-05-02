@@ -22,9 +22,12 @@ p <- indeksi_suuralueittain |>
   theme_bw() +
   theme(panel.grid.minor = element_line(size = 0.5),
         legend.position = "bottom",
-        legend.justification = "left")
+        legend.justification = "left",
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 12),
+        axis.title = element_text(size = 12))
 
-ggsave(filename = "kuviot/indeksi_suuralueittain.pdf", width = 8, height = 5)
+ggsave(filename = "kuviot/indeksi_suuralueittain.pdf", width = 8, height = 4)
 
 
 

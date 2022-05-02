@@ -22,8 +22,11 @@ p <- indeksi_ammateittain |>
   theme_bw() +
   theme(panel.grid.minor = element_line(size = 0.5),
         legend.position = "bottom",
-        legend.justification = "left") +
+        legend.justification = "left",
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 12),
+        axis.title = element_text(size = 12)) +
   guides(colour = guide_legend(title.position = "top"),
          shape = guide_legend(title.position = "top"))
 
-ggsave("kuviot/indeksi_ammateittain.pdf", plot = p, width = 8, height = 5)
+ggsave("kuviot/indeksi_ammateittain.pdf", plot = p, width = 8, height = 4)
