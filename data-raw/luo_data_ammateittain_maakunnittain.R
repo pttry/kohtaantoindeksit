@@ -26,6 +26,6 @@ for(i in 1:4) {
   print(i)
 }
 
-data_ammateittain_maakunnittain <- left_join(data0, data_kokomaa, by = "time")
+data_ammateittain_maakunnittain <- dplyr::left_join(data0, data_kokomaa, by = "time")
 
 usethis::use_data(data_ammateittain_maakunnittain, overwrite = TRUE)

@@ -59,8 +59,7 @@ data_tyottomat <- tyti_137i |>
   tidyr::spread(tiedot, value) |>
   dplyr::rename(suuralue = suuralue_2012) |>
   dplyr::filter(suuralue != "SSS") |>
-  dplyr::mutate(TYOTTOMATLOPUSSA = 1000*Tyottomat) |>
-  dplyr::filter(sukupuoli == "SSS")
+  dplyr::mutate(TYOTTOMATLOPUSSA = 1000*Tyottomat)
 
 
 data_kokomaa_avoimet_tyopaikat <- data_avoimet_tyopaikat |>
