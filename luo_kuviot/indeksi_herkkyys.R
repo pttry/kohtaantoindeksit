@@ -66,9 +66,12 @@ p_ammatti_herkkyys <- indeksi_ammateittain |> filter(tiedot == "mismatch_trend")
   guides(alpha = "none") +
   guides(colour = guide_legend(title.position = "top", nrow = 2),
          shape = guide_legend(title.position = "top", nrow = 2)) +
+  theme_bw() +
   theme(legend.text = element_text(size = 15),
         legend.title = element_text(size = 15),
-        axis.title = element_text(size = 15))
+        axis.title = element_text(size = 15),
+        legend.position = "bottom",
+        legend.justification = "left")
 
 p_herkkyys <- gridExtra::grid.arrange(p_alue_herkkyys, p_ammatti_herkkyys, nrow = 1)
 ggsave("kuviot/herkkyys_a.pdf",plot = p_herkkyys,  width = 11.2, height = 6)
