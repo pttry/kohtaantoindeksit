@@ -7,7 +7,7 @@ plot_alueellinen_keskittyminen <- function(data, .largest_kunnat_maara) {
     ggplot(aes(x = time, color = tiedot)) +
     geom_line(aes(y = value), alpha = 0.3, size = 1) +
     geom_line(aes(y = value_loess), alpha  =1, size = 1) +
-    geom_point(aes(y = value_year, shape = tiedot)) +
+    geom_point(aes(y = value_year, shape = tiedot), size = 4) +
     labs(x = NULL,
          y = paste("Osuus suurimassa ", as.character(.largest_kunnat_maara), " kunnassa", sep = ""),
          color = NULL) +

@@ -6,7 +6,7 @@ for(i in 1:dim(taulut)[1]) {
   query <- taulut$query[i][[1]]
 
   data <- pttdatahaku::ptt_get_statfi_robonomist(url, query = query)
-  data_name <- statfitools::get_table_code(url)
+  data_name <- statfitools::url_to_table_code(url)
 
   assign(data_name, data)
   do.call("use_data", list(as.name(data_name), overwrite = TRUE))

@@ -15,7 +15,7 @@ for(i in 1:dim(taulut)[1]) {
     dplyr::rename(tiedot = name) |>
     statfitools::clean_names()
 
-  data_name <- statfitools::get_table_code(url)
+  data_name <- statfitools::url_to_table_code(url)
 
   assign(data_name, data)
   do.call("use_data", list(as.name(data_name), overwrite = TRUE))
