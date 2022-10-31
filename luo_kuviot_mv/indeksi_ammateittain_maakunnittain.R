@@ -12,7 +12,7 @@ p <- indeksi_ammateittain_maakunnittain |>
   scale_y_continuous(labels = ggptt::percent_comma,
                      breaks = seq(0,0.40,by = 0.05),
                      minor_breaks = seq(0,0.40, by = 0.01)) +
-  scale_color_discrete(name = "Työmarkkinamääritelmä",labels = paste(1:4, "numerotaso-maakunta", sep = "-")) +
+  scale_color_grey(name = "Työmarkkinamääritelmä",labels = paste(1:4, "numerotaso-maakunta", sep = "-")) +
   scale_shape_manual(name = "Työmarkkinamääritelmä", values = 15:18, labels = paste(1:4, "numerotaso-maakunta", sep = "-")) +
   scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
                date_labels = "%Y") +
@@ -30,5 +30,5 @@ p <- indeksi_ammateittain_maakunnittain |>
          shape = guide_legend(title.position = "top", nrow = 2))
 
 
-ggsave("kuviot/indeksi_ammateittain_maakunnittain.pdf", plot = p, width = 8, height = 4)
+ggsave("kuviot_mv/indeksi_ammateittain_maakunnittain.pdf", plot = p, width = 8, height = 4)
 

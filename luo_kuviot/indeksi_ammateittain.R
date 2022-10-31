@@ -8,7 +8,7 @@ p <- indeksi_ammateittain |>
   ggplot(aes(x = time, col = ammattiryhma_codetaso)) +
   geom_line(aes(y = mismatch), alpha = 0.3, size = 1) +
   geom_line(aes(y = mismatch_trend), alpha = 1, size = 1) +
-  geom_point(aes(y = value_year, shape = ammattiryhma_codetaso, col = ammattiryhma_codetaso)) +
+  geom_point(aes(y = value_year, shape = ammattiryhma_codetaso, col = ammattiryhma_codetaso), size = point_size) +
   scale_y_continuous(labels = percent_comma,
                      breaks = seq(0,0.25,by = 0.05),
                      minor_breaks = seq(0,0.25, by = 0.01)) +

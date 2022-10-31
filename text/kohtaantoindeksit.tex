@@ -23,9 +23,13 @@ ver@l3backend.sty\endcsname{}
 \usepackage{l3backend}
 \usepackage{polyglossia}
 \usepackage{testhyphens}
+\usepackage{datetime}
 
 \setmainlanguage{finnish}
 \addto\captionsfinnish{\renewcommand{\figurename}{Kuvio}}
+
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH] \THEYEAR}
 
 \newcommand{\lastdatamonth}{\input{parameters/lastdatamonth.txt}\unskip} 
 \newcommand{\firstdatamonth}{\input{parameters/firstdatamonth.txt}\unskip} 
@@ -35,16 +39,19 @@ ver@l3backend.sty\endcsname{}
 
 \newcommand{\newcaption}[1]{\caption{\textit{\footnotesize{#1}}}}
 
+
+
  \geometry{
  a4paper,
  % total={165mm,230mm},
- left=25mm,
+ left=27mm,
  top=25mm,
- right=25mm
+ bottom = 27mm,
+ right=27mm,
  }
  
 \title{Alueellisesta ja ammatillisesta kohtaannosta}
-\date{Toukokuu 2022 \\ 
+\date{\monthyeardate\today  \\ 
 \href{https://github.com/pttry/kohtaantoindeksit/blob/main/text/kohtaantoindeksit.pdf}{\textcolor{blue}{Tästä viimeisimpään versioon}} \\
 \href{https://github.com/pttry/kohtaantoindeksit}{\textcolor{blue}{Tästä aineistoihin ja analyyseihin}}}
 \author{Juho Alasalmi\footnote{\href{mailto: juho.alasalmi@ptt.fi}{\textcolor{blue}{juho.alasalmi@ptt.fi}}} \\ 
@@ -65,7 +72,7 @@ Arvioin työmarkkinoiden alueellisen ja ammatillisen kohtaannon kehitystä Suome
 
 \section{Johdanto} \label{section:johdanto}
 
-Työmarkkinoiden kohtaannon parantaminen on usein mainittu yhtenä keskeisimpänä työllisyysasteen nostoon tähtäävistä keinoista. Mutta kuinka suuri kohtaanto-ongelma oikeastaan on? Kuinka se on muuttunut ajassa? Kumpi on merkittävämpi: ammatillinen vai alueellinen kohtaanto-ongelma? \citeA{csahin2014mismatch} ovat kehittäneet indeksin, jolla kohtaanto-ongelmien suuruutta voidaan arvioida. Arvioin tällä indeksillä  alueellisen ja ammatillisen kohtaannon kehitystä Suomen työmarkkinoilla vuodesta 2006 alkaen.
+Työmarkkinoiden kohtaannon parantaminen on usein mainittu yhtenä keskeisimpänä työllisyysasteen nostoon tähtäävistä keinoista. Mutta kuinka suuri kohtaanto-ongelma oikeastaan on? Kuinka se on muuttunut ajassa? Kumpi on merkittävämpi: ammatillinen vai alueellinen kohtaanto-ongelma? \citeA{csahin2014mismatch} ovat kehittäneet indeksin, jolla kohtaanto-ongelmien suuruutta voidaan arvioida. Arvioin tällä indeksillä  alueellisen ja ammatillisen kohtaannon kehitystä Suomen työmarkkinoilla vuodesta 2006 alkaen. \footnote{Tekstistä julkaistu versioita \citeA{alasalmi2022a} sekä \citeA{alasalmi2022b}}
 
 Työttömien työnhakijoiden ja avoimien työpaikkojen kohtaamattomuus työmarkkinoilla voidaan ensinnäkin jakaa työmarkkinoiden välisiin kohtaanto-ongelmiin ja työmarkkinoiden sisäisiin kohtaanto-ongelmiin. Työmarkkinoiden väliset kohtaanto-ongelmat syntyvät, kun työnhakijat eivät liiku työmarkkinoiden välillä silloin, kun liikkuvuus työmarkkinoiden välillä edistäisi heidän työllistymistään. Tällainen tilanne syntyy, kun joillain työmarkkinoilla on pulaa työvoimasta, kun taas joillain työmarkkinoilla työttömiä suhteessa avoimiin työpaikkoihin on paljon. Työmarkkinoiden väliset kohtaanto-ongelmat ovat erityisesti alueellisia tai ammatillisia, riippuen siitä ajatellaanko työmarkkinoiden muodostuvat alueellisesti vai ammatillisesti.
 
@@ -87,7 +94,7 @@ eli toisin sanoen työtön työnhakija työmarkkinalla n aikavälillä t ja t+1 
 \begin{align*}
 \frac{h_{nt}}{u_{nt}} = \left ( \frac{v_{nt}}{u_{nt}} \right ) ^\alpha,
 \end{align*}
-missä $h_{nt}$ on ajanhetkien $t$ ja $t+1$ välillä työllistyneiden (ja täyttyneiden työpaikkojen) määrä ja $a$ on parametri, joka määrää kuinka työllistymisen todennäköisyys riippuu työmarkkinan kireydestä. Työllistymisen todennäköisyys työmarkkinalla laskee työttömien määrän kasvaessa tai avoimien työpaikkojen määrän laskiessa. Useat tutkimukset ovat estimoineet parametrin a arvoa. \citeA{csahin2014mismatch} käyttävät näihin tutkimuksiin perustuen arvoa 0,5, joten asetetaan $a = 0,5$. Alla tulosten herkkyyttä tämän parametrin arvolle testataan ja käy ilmi, että tämä parametrin arvo 0,5 asettaa ylärajan kohtaanto-ongelman suuruudelle.
+missä $h_{nt}$ on ajanhetkien $t$ ja $t+1$ välillä työllistyneiden (ja täyttyneiden työpaikkojen) määrä ja $a$ on parametri, joka määrää kuinka työllistymisen todennäköisyys riippuu työmarkkinan kireydestä. Työllistymisen todennäköisyys työmarkkinalla laskee työttömien määrän kasvaessa tai avoimien työpaikkojen määrän laskiessa. Useat tutkimukset ovat estimoineet parametrin a arvoa. \citeA{csahin2014mismatch} käyttävät näihin tutkimuksiin perustuen arvoa 0,5, joten asetetaan $\alpha= 0,5$. Alla tulosten herkkyyttä tämän parametrin arvolle testataan ja käy ilmi, että tämä parametrin arvo 0,5 asettaa ylärajan kohtaanto-ongelman suuruudelle.
 
 Ajatuksena kohtaanto-ongelman suuruuden kartoittamisessa on verrata työttömien työnhakijoiden todellista jakautumista työmarkkinoille $N$ sellaiseen jakautumiseen, jossa kohtaanto-ongelmaa ei olisi. Kohtaanto-ongelmaa ei ole, jos työmarkkinalta toiselle liikkuminen ei lisää työllisyyttä. Kuvitellaan siten, että voimme uudelleensijoittaa työttömät työnhakijat työmarkkinoille siten, että kohtaanto-ongelma poistuisi. Merkitään työmarkkinalla $n$ ajanhetkellä $t$ olevien työttömien määrää tässä ideaalitilanteessa $u_{nt}^*$.
 
@@ -175,20 +182,20 @@ Työmarkkinoita voi määritellä myös sekä alueen että ammatin perusteella. 
 \begin{figure}
 \centering
 \includegraphics[scale = 0.55]{../kuviot/herkkyys_a.pdf}
-    \newcaption{Kohtaanto-ongelman suuruutta mittaavan indeksin trendin herkkyys parametrin a arvolle $a \in \{0,25, 0,30, 0,35, 0,40, 0,45, 0,50, 0,55, 0,60, 0,65, 0,70\}$. Indeksi laskettu arvolla $a = 0,5$ tummimmalla värillä. \protect \firstdatamonth \phantom{} - \protect\lastdatamonth. Datalähde: Työnvälitystilasto, Tilastokeskus, taulukko 12ti \protect \cite{svt2011}.}
+    \newcaption{Kohtaanto-ongelman suuruutta mittaavan indeksin trendin herkkyys parametrin $\alpha$ arvolle $\alpha \in \{0,25, 0,30, 0,35, 0,40, 0,45, 0,50, 0,55, 0,60, 0,65, 0,70\}$. Indeksi laskettu arvolla $\alpha = 0,5$ tummimmalla värillä. \protect \firstdatamonth \phantom{} - \protect\lastdatamonth. Datalähde: Työnvälitystilasto, Tilastokeskus, taulukko 12ti \protect \cite{svt2011}.}
    \label{fig:ldsdfhg}
 \end{figure}
 
 Edeltävissä tarkasteluissa parametrin $a$ arvoksi asetettiin 0,5 aikaisempien tutkimusten ja yksinkertaisuuden vuoksi. Tarkastellaan seuraavaksi, kuinka herkkiä tulokset ovat tälle parametrin arvon valinnalle. Käytetty kohtaantofunktio yleisemmässä muodossa on 
 \begin{align}
-h_{nt}=v_{nt}^au_{nt}^b,
+h_{nt}=v_{nt}^\alpha u_{nt}^\beta,
 \end{align}
-Suomessa ja maailmalla avoimien työpaikkojen joustoksi ($a$) on arvioitu arvoja välillä 0,2–0,4 ja työttömien määrän joustoksi ($b$) arvoja välillä 0,4–0,7 \cite{lahtonen2006matching, petrongolo2001looking}. Koska Şahinin ym. (2014) kohtaanto-ongelman suuruutta mittaavan indeksin voidaan varmistaa pysyvän arvojen 0 ja 1 välissä (eli käyvän järkeen) vain jos joustot summautuvat yhteen, pitäydyn vakioskaalatuottojen oletuksessa ja asetan $b = 1-a$. Kuvio 4 esittää indeksit useille eri parametrin $a$ arvoille. Samoin kuin \citeA{csahin2014mismatch}, huomaamme, että arvon $a = 0,5$ käyttäminen antaa yläraja-arvion kohtaanto-ongelman suuruudesta. Tämän tarkastelun laadullisiin tuloksiin parametrille $a$ annettu arvo ei näytä vaikuttavan. 
+Suomessa ja maailmalla avoimien työpaikkojen joustoksi ($\alpha$) on arvioitu arvoja välillä 0,2–0,4 ja työttömien määrän joustoksi ($\beta$) arvoja välillä 0,4–0,7 \cite{lahtonen2006matching, petrongolo2001looking}. Koska Şahinin ym. (2014) kohtaanto-ongelman suuruutta mittaavan indeksin voidaan varmistaa pysyvän arvojen 0 ja 1 välissä (eli käyvän järkeen) vain jos joustot summautuvat yhteen, pitäydyn vakioskaalatuottojen oletuksessa ja asetan $\beta = 1-\alpha$. Kuvio 4 esittää indeksit useille eri parametrin $a$ arvoille. Samoin kuin \citeA{csahin2014mismatch}, huomaamme, että arvon $\alpha = 0,5$ käyttäminen antaa yläraja-arvion kohtaanto-ongelman suuruudesta. Tämän tarkastelun laadullisiin tuloksiin parametrille $\alpha$ annettu arvo ei näytä vaikuttavan. 
 
 \begin{figure}
 \centering
 \includegraphics[scale = 0.8]{../kuviot/indeksi_suuralueittain.pdf}
-    \newcaption{Kohtaanto-ongelman suuruutta mittaava indeksi Työnvälitystilaston ja Työvoimatutkimuksen tiedoilla. Työmarkkina-alueeksi on määritelty suuralue.  Työnvälitystilasto \protect \firstdatamonth \phantom{}  - \protect\lastdatamonth. Työvoimatutkimus \protect \firstdataquarter \phantom{} - \protect\lastdataquarter. Datalähde, Työnvälitystilasto, Työvoimatutkimus, Tilastokeskus, taulukot 12ti, 11n1, 11c9  \protect \cite{svt2011}.}
+    \newcaption{Kohtaanto-ongelman suuruutta mittaava indeksi Työnvälitystilaston ja Työvoimatutkimuksen tiedoilla. Työmarkkina-alueeksi on määritelty suuralue.  Työnvälitystilasto \protect \firstdatamonth \phantom{}  - \protect\lastdatamonth. Työvoimatutkimus \protect \firstdataquarter \phantom{} - \protect\lastdataquarter. Datalähde, Työnvälitystilasto, Työvoimatutkimus, Tilastokeskus, taulukot 12ti, 11n1, 137i  \protect \cite{svt2011}.}
    \label{fig:ld0923g}
 \end{figure}
 
@@ -201,7 +208,7 @@ Työnvälitystilaston tiedot perustuvat Työ- ja elinkeinotoimistoihin rekister�
 \begin{figure}
 \centering
 \includegraphics[scale = 0.8]{../kuviot/beveridge_curve.pdf}
-    \newcaption{Beveridge-käyrä. \protect  \firstdatamonth \phantom{} - \protect\lastdatamonth. Datalähde, Työnvälitystilasto, Tilastokeskus, taulukko 12ti \protect \cite{svt2011}.}
+    \newcaption{Beveridge-käyrä. \protect  \firstdatamonth \phantom{} - \protect\lastdatamonth. Datalähde, Työnvälitystilasto, Tilastokeskus, taulukko 12r5 \protect \cite{svt2011}.}
    \label{fig:ld0923g}
 \end{figure}
 
@@ -230,7 +237,8 @@ Kohtaanto-ongelman suuruutta mittaava indeksi arvioi alueellisen kohtaamattomuud
 
 Alueellisen kohtaannon luoma vaje työllistymisen määrässä näyttää kuitenkin trendinomaisesti laskeneen vuodesta 2006 saakka. Myös ammatillinen kohtaanto on parantunut vuoden 2010 jälkeen, mutta lähinnä vuoteen 2020 mennessä saavuttanut tason, jolla se oli vuonna 2006. Vaikka työmarkkinoiden kohtaanto on kokonaisuudessaan heikentynyt, alueellisen ja ammatillisen kohtaannon kontribuutio kohtaanto-ongelmiin on pienentynyt 2000-luvulla. Syitä kohtaannon heikentymiseen tulisi siis ensisijaisesti etsiä muualta kuin alueellisesta ja ammatillisesta kohtaannosta ja ratkaisuja muualta kuin ammatillisesta ja alueellisesta liikkuvuudesta. 
 
- \bibliographystyle{apacite}
+\newpage
+\bibliographystyle{apacite}
 \bibliography{kirjasto}
 
 \end{document}

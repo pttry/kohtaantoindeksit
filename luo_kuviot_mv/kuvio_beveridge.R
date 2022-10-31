@@ -25,9 +25,9 @@ plot_beveridge_curve <- function(df,
   df$vuosi_label = sapply(df$time, function(t) {ifelse(grepl("01-01", t), format(t, "%Y"), "")})
 
   ggplot(df, aes(x = x, y = y, label = vuosi_label)) +
-    geom_point(size = 2, aes(color = lubridate::year(time))) +
+    geom_point(size = 2, aes(color = lubridate::year(time)), size = point_size) +
     geom_path(aes(color = lubridate::year(time)), size = 1) +
-    scale_color_gradient(high = "darkgreen", low = "lightgreen", breaks = seq(2006,2022, by = 4)) +
+    scale_color_gradient(high = "black", low = "grey80", breaks = seq(2006,2022, by = 4)) +
     ggrepel::geom_text_repel(color = "black", max.overlaps = Inf,min.segment.length = 0, box.padding = 0.5) +
     labs(y = ifelse(number_type == "relative", "Vakanssiaste", "Avoimet työpaikat"),
          x = ifelse(number_type == "relative", "Työttömyysaste", "Työttömät"), color = NULL)
@@ -38,4 +38,4 @@ plot_beveridge_curve(tyonv_12r5) +
   scale_x_continuous(labels = ggptt::percent_comma) +
   theme_bw()
 
-ggsave("kuviot/beveridge_curve.pdf",plot = last_plot(),  width = 8, height = 5)
+ggsave("kuviot_mv/beveridge_curve.pdf",plot = last_plot(),  width = 8, height = 5)

@@ -12,7 +12,7 @@ p <- indeksi_suuralueittain |>
   geom_point(aes(y = value_year, shape = source, col = source), size = point_size) +
   scale_y_continuous(labels = ggptt::percent_comma,
                      breaks = seq(0.00,0.03, by =0.01)) +
-  scale_color_manual(name = "Datalähde", values = ggptt::ggptt_palettes$ptt[1:2], labels = c("Työnvälitystilasto", "Työvoimatutkimus")) +
+  scale_color_grey(name = "Datalähde",labels = c("Työnvälitystilasto", "Työvoimatutkimus")) +
   scale_shape_manual(name = "Datalähde", values = 15:16, labels = c("Työnvälitystilasto", "Työvoimatutkimus")) +
   scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
                date_labels = "%Y") +
@@ -27,7 +27,7 @@ p <- indeksi_suuralueittain |>
         legend.title = element_text(size = 12),
         axis.title = element_text(size = 12))
 
-ggsave(filename = "kuviot/indeksi_suuralueittain.pdf", width = 8, height = 4)
+ggsave(filename = "kuviot_mv/indeksi_suuralueittain.pdf", width = 8, height = 4)
 
 
 
