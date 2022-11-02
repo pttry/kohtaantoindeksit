@@ -27,7 +27,7 @@ p <- indeksi_suuralueittain |>
         legend.title = element_text(size = 12),
         axis.title = element_text(size = 12))
 
-ggsave(filename = "kuviot_mv/indeksi_suuralueittain.pdf", width = 8, height = 4)
+ggsave(filename = "kuviot_mv/indeksi_suuralueittain.png", width = 8, height = 4)
 
 
 

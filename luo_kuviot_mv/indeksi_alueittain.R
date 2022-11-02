@@ -29,4 +29,4 @@ p <-indeksi_alueittain |>
   guides(colour = guide_legend(title.position = "top"),
          shape = guide_legend(title.position = "top"))
 
-ggsave("kuviot_mv/indeksi_alueittain.pdf", plot = p, width = 8, height = 4)
+ggsave("kuviot_mv/indeksi_alueittain.png", plot = p, width = 8, height = 4)

@@ -11,7 +11,7 @@ p <- indeksi_ammateittain |>
   geom_point(aes(y = value_year, shape = ammattiryhma_codetaso, col = ammattiryhma_codetaso), size = point_size) +
   scale_y_continuous(labels = percent_comma,
                      breaks = seq(0,0.25,by = 0.05),
-                     minor_breaks = seq(0,0.25, by = 0.01)) +
+                     minor_breaks = seq(0,0.25, by = 0.025)) +
   scale_color_grey(name = "Työmarkkinamääritelmä",labels = paste(1:4, "numerotaso", sep = "-")) +
   scale_shape_manual(name = "Työmarkkinamääritelmä", values = 15:18, labels = paste(1:4, "numerotaso", sep = "-")) +
   scale_x_date(breaks = as.Date(paste(seq(2006,2022,by=2), "-01-01", sep = "")),
@@ -29,4 +29,4 @@ p <- indeksi_ammateittain |>
   guides(colour = guide_legend(title.position = "top"),
          shape = guide_legend(title.position = "top"))
 
-ggsave("kuviot_mv/indeksi_ammateittain.pdf", plot = p, width = 8, height = 4)
+ggsave("kuviot_mv/indeksi_ammateittain.png", plot = p, width = 8, height = 4)

@@ -74,4 +74,4 @@ p_ammatti_herkkyys <- indeksi_ammateittain |> filter(tiedot == "mismatch_trend")
         legend.justification = "left")
 
 p_herkkyys <- gridExtra::grid.arrange(p_alue_herkkyys, p_ammatti_herkkyys, nrow = 1)
-ggsave("kuviot_mv/herkkyys_a.pdf",plot = p_herkkyys,  width = 11.2, height = 6)
+ggsave("kuviot_mv/herkkyys_a.png",plot = p_herkkyys,  width = 11.2, height = 6)

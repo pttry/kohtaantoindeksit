@@ -30,5 +30,5 @@ p <- indeksi_ammateittain_maakunnittain |>
          shape = guide_legend(title.position = "top", nrow = 2))
 
 
-ggsave("kuviot_mv/indeksi_ammateittain_maakunnittain.pdf", plot = p, width = 8, height = 4)
+ggsave("kuviot_mv/indeksi_ammateittain_maakunnittain.png", plot = p, width = 8, height = 4)
 

@@ -38,4 +38,4 @@ plot_beveridge_curve(tyonv_12r5) +
   scale_x_continuous(labels = ggptt::percent_comma) +
   theme_bw()
 
-ggsave("kuviot_mv/beveridge_curve.pdf",plot = last_plot(),  width = 8, height = 5)
+ggsave("kuviot_mv/beveridge_curve.png",plot = last_plot(),  width = 8, height = 5)

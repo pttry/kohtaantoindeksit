@@ -29,4 +29,4 @@ p1 <- data_alueellinen_keskittyminen |> plot_alueellinen_keskittyminen(50)
 p2 <- data_alueellinen_keskittyminen |> plot_alueellinen_keskittyminen(150)
 
 p <- ggpubr::ggarrange(p1, p2, nrow = 1, common.legend = TRUE, legend = "bottom")
-ggsave("kuviot_mv/alueellinen_keskittyminen.pdf",plot = p,  width = 11.2, height = 6)
+ggsave("kuviot_mv/alueellinen_keskittyminen.png",plot = p,  width = 11.2, height = 6)
