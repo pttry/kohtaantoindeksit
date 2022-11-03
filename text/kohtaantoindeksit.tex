@@ -64,10 +64,12 @@ Pellervon Taloustutkimus }
 \maketitle
 
 \begin{abstract}
-Arvioin työmarkkinoiden alueellisen ja ammatillisen kohtaannon kehitystä Suomessa vuodesta 2006 alkaen. Muodostan kohtaanto-ongelman suuruutta mittaavan indeksin \cite{csahin2014mismatch}, joka kuvaa kuinka epätasapainoisesti työttömät työnhakijat ja avoimet työpaikat ovat sijoittuneet eri alueille ja eri ammatteihin verrattuna tilanteeseen, jossa alueellinen tai ammatillinen liikkuvuus eivät olisi rajoitteita. Arvioin sekä alueellisen että ammatillisen kohtaanto-ongelman trendinomaisesti pienentyneen 2000-luvun aikana. Kokonaisuudessaan työmarkkinoiden kohtaanto on Beveridge-käyrällä mitattuna kuitenkin heikentynyt. Koska epätasapaino työttömien työnhakijoiden ja avoimien työpaikkojen alueellisessa ja ammatillisessa jakaumassa on pienentynyt kohtaannon heikentyminen tuskin johtuu alueellisen tai ammatillisen liikkuvuuden kehityksestä tai rajoitteista.
+Arvioin työmarkkinoiden alueellisen ja ammatillisen kohtaannon kehitystä Suomessa vuodesta 2006 alkaen. Muodostan kohtaanto-ongelman suuruutta mittaavan indeksin \cite{csahin2014mismatch}, joka kuvaa kuinka epätasapainoisesti työttömät työnhakijat ja avoimet työpaikat ovat sijoittuneet eri alueille ja eri ammatteihin verrattuna tilanteeseen, jossa työmarkkinoiden välinen liikkuvuus ei edistäisi työllisyyttä eli tilanteeseen, jossa alueellista ja ammatillista kohtaanto-ongelmaa ei olisi. Arvioin sekä alueellisen että ammatillisen kohtaanto-ongelman trendinomaisesti pienentyneen 2000-luvun aikana. Kokonaisuudessaan työmarkkinoiden kohtaanto on Beveridge-käyrällä mitattuna kuitenkin heikentynyt. Koska epätasapaino työttömien työnhakijoiden ja avoimien työpaikkojen alueellisessa ja ammatillisessa jakaumassa on pienentynyt kohtaannon heikentyminen tuskin johtuu alueellisen tai ammatillisen liikkuvuuden kehityksestä tai rajoitteista. \\
+
+I assess the spatial and occupational mismatch of vacancies and job seekers in Finnish labor markets after 2006. I use an index developed by \cite{csahin2014mismatch}. This index measures the imbalance in the allocation of vacancies and job seekers into regions and occupations relative to a situation where mobility between markets does not increase employment and thus there is no spatial or regional mismatch. I estimate that both the occupational and regional mismatch have a decreasing trend. However, during the same period the total labor market mismatch, as assessed by the Beveridge-curve, has increased. This simultaneous increase in total mismatch and decrease in occupational and regional mismatch suggests that the general trend in the deterioration of labor market matching is not due to regional or occupational mismatch and thus solutions are not in occupational and regional mobility.
 \end{abstract}
 
-
+\newpage
 \setstretch{1.2}
 
 \section{Johdanto} \label{section:johdanto}
@@ -87,9 +89,10 @@ Teksti etenee seuraavasti: Osiossa \ref{section:kohtaanto-ongelman mittaaminen} 
 Aloitetaan ongelmaa yksinkertaistavalla ajatusleikillä. Ajatellaan, että Suomessa on $N$ kappaletta työmarkkinoita. Tarkastellaan siis ainoastaan mahdollisia Suomen sisäisiä työmarkkinoiden kohtaanto-ongelmia. Nämä työmarkkinat voivat määrittyä alueen, ammatin tai alueen ja ammatin perusteella. Esimerkiksi ekonomistit ja työpaikat ekonomisteille voidaan ajatella olevan yksi työmarkkina. Työmarkkinoista voidaan tehdä myös pienempiä ajattelemalla Helsingissä asuvien ekonomistien ja Helsingissä olevien ekonomistitöiden muodostavan yhden työmarkkinan. Oletus on, että avoimet työpaikat voidaan täyttää vain saman työmarkkinan työttömillä ja työttömät voivat hakevat töitä ainoastaan oman työmarkkinansa sisältä. Vain samalla työmarkkinalla olevat työttömät ja avoimet työpaikat voivat kohdata ja liikkuvuutta työmarkkinoiden välillä ei siis ole. Huomaa, että sitä rajoittavampi oletus työmarkkinoiden välisestä liikkumattomuudesta on, mitä pienemmäksi työmarkkinat määritellään. Yksinkertaisuuden vuoksi ajatellaan myös, että kaikki työttömät ja avoimet työpaikat työmarkkinalla ovat samanlaisia siten, että työmarkkinan työttömillä on kaikilla sama todennäköisyys työllistyä ja työmarkkinan avoimilla työpaikoilla on kaikilla sama todennäköisyys täyttyä.
 
 Otetaan yksi työmarkkina ja nimetään se $n$:ksi. Ajanhetkellä $t$ tällä työmarkkinalla on $v_{nt}$ avointa työpaikkaa ja $u_{nt}$ työtöntä työnhakijaa. Koska työttömien työnhakijoiden työpaikkojen etsintä ja työnantajien työntekijöiden etsintä vaatii aikaa, avoimet työpaikat eivät täyty välittömästi. Kuvataan tätä työmarkkinoiden sisäistä kitkaa yksinkertaisesti kohtaantofunktiolla ja sanotaan, että avoimet työpaikat ja työttömät työnhakijat löytävät toisensa vauhtia, joka riippuu työttömien työnhakijoiden ja avoimien työpaikkojen määrästä: 
-\begin{align*}
+\begin{align}
 h_{nt} = v_{nt}^\alpha u_{nt}^{1-\alpha}
-\end{align*}
+\label{eq:kcowwd}
+\end{align}
 eli toisin sanoen työtön työnhakija työmarkkinalla n aikavälillä t ja t+1 työllistyy todennäköisyydellä 
 \begin{align*}
 \frac{h_{nt}}{u_{nt}} = \left ( \frac{v_{nt}}{u_{nt}} \right ) ^\alpha,
@@ -98,24 +101,24 @@ missä $h_{nt}$ on ajanhetkien $t$ ja $t+1$ välillä työllistyneiden (ja täyt
 
 Ajatuksena kohtaanto-ongelman suuruuden kartoittamisessa on verrata työttömien työnhakijoiden todellista jakautumista työmarkkinoille $N$ sellaiseen jakautumiseen, jossa työmarkkinoiden välisen liikkumisen kitkan luomaa kohtaanto-ongelmaa ei olisi. Tätä kohtaanto-ongelmaa ei ole, jos työmarkkinalta toiselle liikkuminen ei lisää työllistymisen todennäköisyyttä eikä siten työllisyyttä. Kuvitellaan siten, että voimme uudelleensijoittaa työttömät työnhakijat työmarkkinoille siten, että tämä kohtaanto-ongelma poistuisi. Merkitään työmarkkinalla $n$ ajanhetkellä $t$ olevien työttömien määrää tässä ideaalitilanteessa $u_{nt}^*$.
 
-Ideaalitilanteessa työllistymisen todennäköisyys jokaisella työmarkkinalla olisi sama. Jos näin ei olisi, silloin jollakin työmarkkinalla työllistymisen todennäköisyys olisi suurempi kuin jollakin toisella ja kohtaantoa voisi parantaa siirtämällä työttömiä edelliseltä työmarkkinalta jälkimmäiselle. Siten työttömien ideaalijako työmarkkinoille ajanhetkellä $t$ täyttää ehdon:
+Ideaalitilanteessa työllistymisen todennäköisyys jokaisella työmarkkinalla olisi sama. Jos näin ei olisi, silloin jollakin työmarkkinalla työllistymisen todennäköisyys olisi suurempi kuin jollakin toisella ja kohtaantoa voisi parantaa siirtämällä työttömiä edelliseltä työmarkkinalta jälkimmäiselle. Siten työttömien ideaalijako $(u_{nt}^*)_{n \in N}$ työmarkkinoille ajanhetkellä $t$ täyttää ehdon:
 \begin{align}
 \frac{v_{nt}}{u_{nt}^*} = \frac{v_{mt}}{u_{mt}^*} \textrm{ kaikilla työmarkkinoilla } n, m \in N
 \label{eq:dfwewe}
 \end{align}
-Työllistymisen todennäköisyys jokaisella työmarkkinalla tulisi siis olla sama ja tämän todennäköisyyden täytyy siten olla sama kuin työllistymisen todennäköisyys koko maassa:
-\begin{align*}
-\frac{h_{nt}^*}{u_{nt}^*} = \left ( \frac{v_{nt}}{u_{nt}^*} \right )^{0.5} = \left ( \frac{v_{t}}{u_{t}^*} \right )^{0.5} \textrm{ kaikilla } n \in N
-\end{align*}
-missä $\sum_{n\in N} v_{nt}=v_t$ ja $\sum_{n\in N} u_{nt}^*=u_t^*$. Ajanhetkien $t$ ja $t+1$ välillä koko maassa työllistyy kohtaanto-ongelman vallitessa
+ja koska kyse on uudelleenjaosta, luonnollisesti $\sum_{n \in N} u_{nt}^* = \sum_{n \in N} u_{nt}$ eli työttömien kokonaismäärä ideaalitilanteessa on sama kuin todellisessa tilanteessa. Työllistymisen todennäköisyys jokaisella työmarkkinalla tulisi siis olla sama ja tämän todennäköisyyden täytyy siten olla sama kuin työllistymisen todennäköisyys koko maassa:
+\begin{align}
+\frac{h_{nt}^*}{u_{nt}^*} = \left ( \frac{v_{nt}}{u_{nt}^*} \right )^{0.5} = \left ( \frac{v_{t}}{u_{t}^*} \right )^{0.5} = \left ( \frac{v_{t}}{u_{t}} \right )^{0.5} \textrm{ kaikilla } n \in N \label{eq:029y}
+\end{align}
+missä $\sum_{n\in N} x_{nt}=x_t$ muuttujille $x \in \{v, u, u^*\}$.\footnote{Jos $\frac{v_{nt}}{u_{nt}} = r$ kaikilla $n$, niin $v_{nt} = r u_{nt}$ kaikilla $n$. Summaamalla avoimet työpaikat ja vakanssit koko maassa saamme siten $v_t = \sum_{n \in N} v_{nt} = r \sum_{n\in N} u_{nt}$ ja $u_t = \sum_{n \in N} u_{nt}$ joten $\frac{v_t}{u_t} = \frac{r \sum_{n\in N} u_{nt}}{\sum_{n \in N} u_{nt}} = r = \frac{v_{nt}}{u_{nt}}$.} Ajanhetkien $t$ ja $t+1$ välillä koko maassa työllistyy kohtaanto-ongelman vallitessa määritelmän (\ref{eq:kcowwd}) mukaan
 \begin{align}
 h_t=\sum_{n\in N} h_{nt}=\sum_{n\in N}\left(v_{nt}u_{nt}\right)^{0.5}
 \end{align}
-työtöntä työnhakijaa, mutta jos ehdon (\ref{eq:dfwewe}) mukaisesti kaikki $u_t$ työtöntä uudelleenjaetaan työmarkkinoille, tänä aikana työllistyy
+työtöntä työnhakijaa, mutta jos ehdon (\ref{eq:dfwewe}) mukaisesti kaikki $u_t$ työtöntä uudelleenjaetaan työmarkkinoille, käyttäen määritelmää (\ref{eq:kcowwd}) ja yhtälöä (\ref{eq:029y}), tänä aikana työllistyy
 \begin{align}
 h_t^*=\sum_{n\in N} h_{nt}^*=\sum_{n\in N}\left(v_{nt}u_{nt}^*\right)^{0.5}=\left(v_tu_t\right)^{0.5}
 \end{align}
-työtöntä työnhakijaa. Huomaa, että ilman kohtaanto-ongelmaa työllistyneiden määrä on siis sama kuin, jos koko Suomessa olisi vain yksi työmarkkina. Kohtaanto-ongelman vuoksi $h_t^*-h_t$ työtöntä työnhakijaa ei siis työllisty ajanhetkien $t$ ja $t+1$ välillä. Määritellään kohtaanto-ongelman suuruutta mittaava indeksi kohtaanto-ongelman vuoksi työllistymättömien määrän suhteena työllistyvien määrään tilanteessa, jossa kohtaanto-ongelmaa ei olisi:
+työtöntä työnhakijaa.\footnote{$\sum_{n\in N}\left(v_{nt}u_{nt}^*\right)^{0.5} = \sum_{n\in N} \frac{u_{nt}^*}{u_{nt}^*} \left(v_{nt}u_{nt}^*\right)^{0.5} = \sum_{n\in N} u_{nt}^* \left( \frac{v_{nt}}{u_{nt}^*}\right)^{0.5}= \sum_{n\in N} u_{nt}^* \left( \frac{v_t}{u_t}\right)^{0.5} = \left( \frac{v_t}{u_t}\right)^{0.5} \sum_{n\in N} u_{nt}^* = \left( \frac{v_t}{u_t}\right)^{0.5} u_t = (v_t u_t)^{0.5}$.} Huomaa, että ilman kohtaanto-ongelmaa työllistyneiden määrä on siis sama kuin, jos koko Suomessa olisi vain yksi työmarkkina. Kohtaanto-ongelman vuoksi $h_t^*-h_t$ työtöntä työnhakijaa ei siis työllisty ajanhetkien $t$ ja $t+1$ välillä. Määritellään kohtaanto-ongelman suuruutta mittaava indeksi kohtaanto-ongelman vuoksi työllistymättömien määrän suhteena työllistyvien määrään tilanteessa, jossa kohtaanto-ongelmaa ei olisi:
 \begin{align}
 M_t=\frac{h_t^*-h_t}{h_t^*}=1-\sum_{n\in N}\left(\frac{v_{nt}}{v_t}\frac{u_{nt}}{u_t}\right)^{0.5}.
 \end{align}
