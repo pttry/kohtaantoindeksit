@@ -1,4 +1,4 @@
-udpate_data <- function() {
+update_data <- function() {
 
   source("data-raw/luo_statfin_data_robonomist.R"); rm(list = ls())
   source("data-raw/luo_data_alueittain.R"); rm(list = ls())

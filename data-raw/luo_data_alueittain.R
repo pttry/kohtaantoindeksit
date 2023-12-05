@@ -9,13 +9,8 @@ data_kunnat <- dplyr::filter(data, grepl("KU", alue)) |> dplyr::rename(kunta_cod
 data_seutukunnat <- dplyr::filter(data, grepl("SK", alue)) |> dplyr::rename(seutukunta_code = alue)
 data_maakunnat <- dplyr::filter(data, grepl("MK", alue)) |> dplyr::rename(maakunta_code = alue)
 
-# Add regions
-key <- statficlassifications::get_regionkey(only_codes = TRUE)
-data_kunnat <- dplyr::mutate(data_kunnat,
-                             maakunta_code = statficlassifications::key_recode(kunta_code, key, to = "maakunta_code"),
-                             seutukunta_code = statficlassifications::key_recode(kunta_code, key, to = "seutukunta_code"))
-data_seutukunnat <- dplyr::mutate(data_seutukunnat,
-                                  maakunta_code = statficlassifications::key_recode(seutukunta_code, key, to = "maakunta_code"))
+data_kunnat <- add_region(data_kunnat, "maakunta_code", "seutukunta_code", from = "kunta_code")
+data_seutukunnat <- add_region(data_seutukunnat, "maakunta_code", from = "seutukunta_code")
 
 # Impute NAs
 data_seutukunnat <- data_seutukunnat |>
@@ -89,9 +84,9 @@ data_tyonv_12r5 <- tyonv_12r5 |>
   dplyr::filter(tiedot %in% c("TYOTTOMATLOPUSSA", "AVPAIKATLOPUSSA")) |>
   tidyr::spread(tiedot, value)
 
-key <- statficlassifications::get_regionkey("maakunta", "suuralue", only_codes = TRUE)
-data_tyonv_12r5 <- dplyr::mutate(data_tyonv_12r5,
-                                 suuralue= statficlassifications::key_recode(maakunta, key, by = "values"))
+data_tyonv_12r5$maakunta_code <- as.character(data_tyonv_12r5$maakunta)
+data_tyonv_12r5 <- add_region(data_tyonv_12r5, "suuralue_code", from = "maakunta_code")
+data_tyonv_12r5 <- rename(data_tyonv_12r5, suuralue = suuralue_code) %>% select(-maakunta_code)
 
 data_suuralueet <- data_tyonv_12r5 |>
                    dplyr::group_by(time, suuralue) |>
